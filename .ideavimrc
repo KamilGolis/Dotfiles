@@ -1,0 +1,500 @@
+"" Base Settings
+"" ========================================================
+" 10 lines above/below cursor when scrolling
+set scrolloff=10
+" Keep few lines visible when scrolling
+set so=5
+
+set linenumber
+set relativenumber
+
+set showmode
+
+set showcmd
+
+set smartcase
+
+set ignorecase
+
+set incsearch
+
+set hlsearch
+
+" Disable bell sound
+set visualbell
+set noerrorbells
+
+let mapleader = " "
+
+" Editing and Reloading the Config
+set clipboard+=unnamed
+set clipboard+=ideaput
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+"" Plugin Settings
+"" ========================================================
+" Which-key settings
+set which-key
+
+" set timeoutlen=9500
+set notimeout
+
+let g:WhichKey_FontSize = 14
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_DefaultDelay = 100
+
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+let g:WhichKeyDesc_leader_explore = "<leader>e Open file explorer"
+" let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
+let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+
+" Surround Plugin  --------------------------------
+" Emulates vim-surround. Mappings to easily delete, change and add such surroundings in pairs
+" Basic Commands:
+"   cs   Change surroundings
+"   cst  Change surroundings tag
+"   ds   Delete surroundings
+"   dst  Delete surroundings tag
+"   ys   Surround text object
+" See https://github.com/tpope/vim-surround/blob/master/doc/surround.txt for details
+set surround
+
+" highlightedyank plugin  --------------------------------
+" Emulates vim-highlightedyank
+" Highlight yanked text
+" See https://github.com/machakann/vim-highlightedyank for details
+set highlightedyank
+
+set sneak
+
+"set ReplaceWithRegister
+" ReplaceWithRegister plugin  --------------------------------
+" Emulates  ReplaceWithRegister
+" Basic Commands:
+"   [count]["x]grr          Replace [count] lines with the contents of register x.
+"   {Visual}["x]gr          Replace the selection with the contents of register x.
+" See https://github.com/vim-scripts/ReplaceWithRegister for details
+Plug 'vim-scripts/ReplaceWithRegister'
+
+" argtextobj  Plugin  --------------------------------
+" Emulates argtextobj. Provides a text-object 'a' for function arguments
+" Text object
+" ai
+" aa
+" See https://www.vim.org/scripts/script.php?script_id=2699 for details
+set argtextobj
+let g:argtextobj_pairs="[:],(:),<:>"
+
+" textobj-entire plugin  --------------------------------
+" Emulates  vim-textobj-entire
+" Basic Commands:
+"   {motion}ae    Apply motion on entire text
+"   {motion}ie    Apply motion on entire text w/o trailing and leading empty lines
+" See https://github.com/kana/vim-textobj-entire for details
+set textobj-entire
+
+"  exchange Plugin  --------------------------------
+" Emulates exchange.vim. Text exchange
+" Basic Commands:
+"   cx    First use to define the exchange, second use defines the second and exchange
+"   cxx   Like cx for an entire line
+"   X     Like cx for visual mode
+" See https://www.vim.org/scripts/script.php?script_id=2699 for details
+Plug 'tommcdo/vim-exchange'
+let g:WhichKeyDesc_change = "c Change"
+let g:WhichKeyDesc_exchange = "cx Exchange"
+let g:WhichKeyDesc_exchange_line = "cxx Exchange whole line"
+let g:WhichKeyDesc_clear_exchange = "cxc Clear Exchange"
+let g:WhichKeyDesc_surround = "cs Surround"
+
+" easy motion plugin  --------------------------------
+" Emulates vim-easymotion
+" Make sure to install IdeaVim-EasyMotion and AceJump Plugins
+" Basic Commands:
+"   easy-motion-s Search backward
+"   easy-motion-f Search forward
+" See https://github.com/AlexPl292/IdeaVim-EasyMotion#supported-commands for details
+Plug 'easymotion/vim-easymotion'
+map <leader>J <Plug>(easymotion-s)
+map <leader>j <Plug>(easymotion-f)
+let g:WhichKeyDesc_easymotion_forward = "<leader>j Search forward"
+let g:WhichKeyDesc_easymotion_backward = "<leader>J Search backward"
+" map <leader>jj <Plug>(easymotion-s)
+nmap f <Plug>(easymotion-bd-f)
+
+" Use Idea to join lines smartly
+set ideajoin
+
+" multiple-cursors plugin  --------------------------------
+" Emulates vim-multiple-cursors
+" Basic Commands:
+"   <C-n> start multicursor
+"   <C-n> next match
+"   <C-x> skip next match
+"   <C-p> remove current match and go back to previous one
+" See https://github.com/terryma/vim-multiple-cursors for details
+set multiple-cursors
+map mc <A-n>
+map mx <A-x>
+map mp <A-p>
+
+" NERDTree plugin  --------------------------------
+" Emulates NERDTree
+" Basic Commands:
+"   Ctrl-n  Open NERDTree (mapped bellow)
+"   q	    Close the NERDTree windowe
+"   o   	Open files, directories and bookmarks
+"   go   	Open selected file, but leave cursor in the NERDTree
+"   i   	Open selected file in a split window
+"   gi   	Same as i, but leave the cursor on the NERDTree
+"   s   	Open selected file in a new vsplit
+"   gs   	Same as s, but leave the cursor on the NERDTree
+"   <C-J>	Jump down to next sibling of the current directory
+"   <C-K>	Jump up to previous sibling of the current directory
+"   R	    Recursively refresh the current root
+"   m	    Display the NERDTree menu
+" See  https://github.com/JetBrains/ideavim/wiki/NERDTree-support for details
+" Open NERDTree (use q to exit)
+" map <leader>e :NERDTreeToggle<CR>
+set nerdtree
+map <leader>e :NERDTreeFocus<CR>
+
+" Commentary plugin  --------------------------------
+" Plug 'tpope/vim-commentary'
+
+Plug 'michaeljsmith/vim-indent-object'
+let g:WhichKeyDesc_select_indent = "aI Outer Indentation of current line"
+let g:WhichKeyDesc_select_indent1 = "ai Outer Indentation (with first line) of current line"
+let g:WhichKeyDesc_select_outer_arg = "aa Outer arguments"
+let g:WhichKeyDesc_select_entire_arg = "ae Entire arguments"
+let g:WhichKeyDesc_select_inner_arg = "ia Inner arguments"
+let g:WhichKeyDesc_select_entire_indent = "ie Entire Indentation"
+let g:WhichKeyDesc_select_current_indent = "ii Current Indentation of current line"
+
+"" Key mappings
+"" ========================================================
+
+" inoremap jk <Esc>
+
+" Tab navigation
+nnoremap <A-n> :tabnext<CR>
+nnoremap <A-p> :tabprev<CR>
+
+" Pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+
+" Jump between methods
+let g:WhichKeyDesc_code_moves_beck = "[ Moving Back/Up"
+let g:WhichKeyDesc_code_moves_forward = "] Moving Forward/Down"
+
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+
+let g:WhichKeyDesc_code_method_up = "[[ Method Up"
+let g:WhichKeyDesc_code_method_down = "]] Method Down"
+
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Execute macro saved in 'q' register
+nnoremap qj @q
+
+" Popup navigation
+inoremap <C-j> <Action>(PopupMenu-selectNext)
+inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+"" Leader commands
+"" ========================================================
+
+" Comment lines
+let g:WhichKeyDesc_comment = "<leader>/ Comment line"
+map <leader>/ <action>(CommentByLineComment)
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+let g:WhichKeyDesc_newline = "z New line"
+let g:WhichKeyDesc_newline_above = "zk New line above"
+let g:WhichKeyDesc_newline_below = "zj New line below"
+
+" Folding
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+let g:WhichKeyDesc_fold_region = "<leader>zm Fold region"
+let g:WhichKeyDesc_unfold_region = "<leader>zl Unfold region"
+let g:WhichKeyDesc_fold_region_sel = "<leader>zM Fold region recursively"
+let g:WhichKeyDesc_unfold_region_sel = "<leader>zL Unfold region recursively"
+
+map <leader>zc <Action>(CollapseAllRegions)
+map <leader>zo <Action>(ExpandAllRegions)
+map <leader>zm <Action>(CollapseRegion)
+map <leader>zl <Action>(ExpandRegion)
+map <leader>zM <Action>(CollapseRegionRecursively)
+map <leader>zL <Action>(ExpandRegionRecursively)
+
+" Window splits
+let g:WhichKeyDesc_window = "<leader>w Window"
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
+let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
+let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_hide_all = "<leader>ww Hide/Restore All windows"
+
+map <leader>wv <Action>(SplitVertically)
+map <leader>wh <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+map <leader>ww <Action>(HideAllWindows)
+
+" Display options
+let g:WhichKeyDesc_display = "<leader>d Display options"
+let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+
+map <leader>dd <action>(ToggleDistractionFreeMode)
+map <leader>dz <action>(ToggleZenMode)
+map <leader>df <action>(ToggleFullScreen)
+
+" Actions
+let g:WhichKeyDesc_action= "<leader>a Actions"
+let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+let g:WhichKeyDesc_action_external_tools = "<leader>at Open External Tools menu"
+let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
+let g:WhichKeyDesc_action_show_actions= "<leader>a<leader> Show Actions"
+let g:WhichKeyDesc_action_bookmarks= "<leader>ab Bookmarks"
+let g:WhichKeyDesc_action_bookmarks_popup= "<leader>abp Bookmarks Popup"
+let g:WhichKeyDesc_action_bookmarks_win= "<leader>ab<leader> Bookmarks Window"
+
+map <leader>am <action>(ShowIntentionActions)
+map <leader>at <action>(ExternalToolsGroup)
+map <leader>as <action>(SearchEverywhere)
+map <leader>abp <action>(popup@BookmarkContextMenu)
+map <leader>ab<leader> <action>(Bookmarks)
+
+" Code
+let g:WhichKeyDesc_code_actions = "<leader>c Code"
+let g:WhichKeyDesc_code_completions = "<leader>cc Inline Completion"
+let g:WhichKeyDesc_code_generate = "<leader>cg Generate"
+let g:WhichKeyDesc_code_actions = "<leader>c Code"
+let g:WhichKeyDesc_code_rename = "<leader>cn Rename element"
+let g:WhichKeyDesc_code_method = "<leader>cm Extract method"
+let g:WhichKeyDesc_code_variable = "<leader>cv Introduce variable"
+let g:WhichKeyDesc_code_field = "<leader>cf Introduce field"
+let g:WhichKeyDesc_code_signature = "<leader>cs Change signature"
+let g:WhichKeyDesc_code_all = "<leader>cr Open refactorings list"
+let g:WhichKeyDesc_code_surround = "<leader>cl Surround With"
+let g:WhichKeyDesc_code_hierarchy = "<leader>ch Hierarchy"
+let g:WhichKeyDesc_code_hierarchy_call = "<leader>chc Call Hierarchy"
+let g:WhichKeyDesc_code_hierarchy_method = "<leader>chm Method Hierarchy"
+let g:WhichKeyDesc_code_hierarchy_type = "<leader>cht Type Hierarchy"
+
+map <leader>cc <Action>(CallInlineCompletionAction)
+map <leader>cg <Action>(Generate)
+map <leader>cn <Action>(RenameElement)
+map <leader>cm <Action>(ExtractMethod)
+map <leader>cv <Action>(IntroduceVariable)
+map <leader>cf <Action>(IntroduceField)
+map <leader>cs <Action>(ChangeSignature)
+map <leader>cr <Action>(Refactorings.QuickListPopupAction)
+map <leader>cl <action>(SurroundWith)
+map <leader>chc <action>(CallHierarchy)
+map <leader>chm <action>(MethodHierarchy)
+map <leader>cht <action>(TypeHierarchy)
+
+" Run
+let g:WhichKeyDesc_run = "<leader>r Run"
+let g:WhichKeyDesc_run_tests = "<leader>rt Tests"
+let gWhichKeyDesc_tests_coverage = "<leader>rtd Run Test with Coverage"
+let g:WhichKeyDesc_tests_run = "<leader>rtc Run Test"
+
+map <leader>rtd <Action>(RunCoverage)
+map <leader>rtc <Action>(RunClass)
+
+" File navigation
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
+let g:WhichKeyDesc_file_nav_goto_class = "<leader>fc Go to class"
+let g:WhichKeyDesc_file_nav_goto_content = "<leader>fb Search for file content"
+let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+
+map <leader>ff <action>(GotoFile)
+map <leader>fc <action>(GotoClass)
+map <leader>fr <action>(RecentFiles)
+map <leader>fb <action>(FindInPath)
+map <leader>fl <action>(RecentLocations)
+"map <leader>fs <action>(NewScratchFile)
+
+" Close active tab
+map <leader>q <action>(CloseContent)
+
+" Go To
+let g:WhichKeyDesc_goto = "g Go to"
+let g:WhichKeyDesc_goto_definition = "gd Go to Definition"
+let g:WhichKeyDesc_goto_type_definition = "gy Go to Type Definition"
+let g:WhichKeyDesc_goto_implementation2 = "gi Go to Implementation"
+let g:WhichKeyDesc_goto_parameter = "gp Parameter Info"
+let g:WhichKeyDesc_goto_quick_implementation = "gI Go to Quick Implementation"
+let g:WhichKeyDesc_goto_type_declaration2 = "gT Go to Type Declaration"
+let g:WhichKeyDesc_goto_quick_doc = "gj Go to Quick Doc"
+let g:WhichKeyDesc_goto_express_info = "gt Express Type Info"
+let g:WhichKeyDesc_goto_error_desc = "ge Go to Error Description"
+let g:WhichKeyDesc_goto_context = "gc Context Info"
+let g:WhichKeyDesc_goto_code_group = "gl Go to ..."
+let g:WhichKeyDesc_goto_replace_reg = "gr Replace with registers"
+let g:WhichKeyDesc_goto_replace_reg_line = "grr Replace Line"
+
+nmap gd <Action>(GotoDeclaration)
+nmap gy <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gp <Action>(ParameterInfo)
+nmap gI <Action>(QuickImplementations)
+nmap gT <Action>(QuickTypeDefinition)
+nmap gj <Action>(QuickJavaDoc)
+nmap gt <Action>(ExpressionTypeInfo)
+nmap ge <Action>(ShowErrorDescription)
+nmap gc <Action>(EditorContextInfo)
+nmap gl <Action>(GoToCodeGroup)
+
+" Git windows
+let g:WhichKeyDesc_git = "<leader>g Git operations"
+let g:WhichKeyDesc_git_commit = "<leader>gc Commit"
+let g:WhichKeyDesc_git_status = "<leader>gs Git Status"
+let g:WhichKeyDesc_git_branches = "<leader>gb Branches"
+let g:WhichKeyDesc_git_rebase = "<leader>gr Rebase"
+let g:WhichKeyDesc_git_pull = "<leader>gp Pull"
+let g:WhichKeyDesc_git_push = "<leader>gP Push"
+let g:WhichKeyDesc_git_stash = "<leader>gt Stash"
+let g:WhichKeyDesc_git_window = "<leader>gw Git Window"
+let g:WhichKeyDesc_git_github = "<leader>gh Pull Requests"
+
+map <leader>gc <Action>(CheckinProject)
+map <leader>gs <Action>(ActivateVersionControlToolWindow)
+map <leader>gb <Action>(Git.Branches)
+map <leader>gr <Action>(Git.Rebase)
+map <leader>gp <Action>(Git.Pull)
+map <leader>gP <Action>(Vcs.Push)
+map <leader>gt <Action>(Git.Stash)
+map <leader>gw <Action>(VcsGroups)
+map <leader>gh <Action>(Github.View.Pull.Request)
+
+" Errors
+let g:WhichKeyDesc_errors = "<leader>x Error navigation"
+let g:WhichKeyDesc_errors_next = "<leader>xn Go to next error in solution"
+let g:WhichKeyDesc_errors_prev = "<leader>xp Go to previous error in solution"
+
+map <leader>xn <Action>(ReSharperGotoNextErrorInSolution)
+map <leader>xp <Action>(ReSharperGotoPrevErrorInSolution)
+
+" Other
+let g:WhichKeyDesc_other_line_up = "[l Line Up"
+let g:WhichKeyDesc_other_statement_up = "[s Statement Up"
+let g:WhichKeyDesc_other_line_down = "]l Line Down"
+let g:WhichKeyDesc_other_statement_down = "]s Statement Down"
+
+nmap [l <Action>(MoveLineUp)
+nmap [s <Action>(MoveStatementUp)
+nmap ]l <Action>(MoveLineDown)
+nmap ]s <Action>(MoveStatementDown)
+
+let g:WhichKeyDesc_goto_back = "[, Go Back"
+let g:WhichKeyDesc_goto_forward = "], Go Forward"
+nmap [, <Action>(Back)
+nmap ], <Action>(Forward)
+
+" Salesforce
+let g:WhichKeyDesc_sf = "<leader>l Salesforce"
+let g:WhichKeyDesc_sf_anonymous = "<leader>la Open Anonymous Apex"
+let g:WhichKeyDesc_sf_soql = "<leader>ls Open SOQL Query"
+let g:WhichKeyDesc_sf_force_save = "<leader>lS Force Save"
+let g:WhichKeyDesc_sf_log = "<leader>ll Open Log Analyzer"
+let g:WhichKeyDesc_sf_err = "<leader>lx Open Deploy Issues"
+let g:WhichKeyDesc_sf_win = "<leader>lw Open IC Window"
+let g:WhichKeyDesc_sf_compare_server = "<leader>lc Compare with Server"
+let g:WhichKeyDesc_sf_toggle_agentforce= "<leader>lz Toggle AgentForce"
+
+map <leader>la <Action>(ActivateAnonymousApexToolWindow)
+map <leader>ls <Action>(ActivateSOQLQueryToolWindow)
+map <leader>ll <Action>(ActivateLogAnalyzerToolWindow)
+map <leader>lx <Action>(ActivateIlluminatedCloudToolWindow)
+map <leader>lw <Action>(IlluminatedCloudToolsGroup)
+map <leader>lc <Action>(IlluminatedCloud.CompareWithServer)
+map <leader>lS <Action>(IlluminatedCloud.ForceSave)
+map <leader>lz <Action>(IlluminatedCloud.ShowAgentforceToolWindow)
+
+" Visual
+vmap ]] <Action>(EditorSelectWord)
+vmap [[ <Action>(EditorUnSelectWord)
+
+" Other
+let g:WhichKeyDesc_easy_motion = "<leader><leader> EasyMotion Action"
+let g:WhichKeyDesc_recent_files = "<leader>, Recently changed files"
+let g:WhichKeyDesc_tools = "<leader>t Tools"
+let g:WhichKeyDesc_tools_terminal = "<leader>tt Terminal Window"
+let g:WhichKeyDesc_tools_actions_list = "<leader>ta Actions List"
+let g:WhichKeyDesc_tools_registers = "<leader>tr Registers"
+map <leader>, <Action>(RecentFiles)
+map ` <Action>(GotoAction)
+map <leader>tt <Action>(ActivateTerminalToolWindow)
+map <leader>ta :actionlist<CR>
+map <leader>tr :reg<CR>
+
+" Help
+let g:WhichKeyDesc_help_window = "<leader>h Help"
+
+" Help - Nerd Tree
+let g:WhichKeyDesc_help_nt = "<leader>ht Nerd Tree - key bindings"
+map <leader>ht <Action>()
+let g:WhichKeyDesc_help_nt1 = "<leader>hto Open files, directories and bookmark"
+map <leader>hto <Action>()
+let g:WhichKeyDesc_help_nt2 = "<leader>htO Recursively open the selected directory"
+map <leader>htO <Action>()
+let g:WhichKeyDesc_help_nt3 = "<leader>htx Close the current nodes parent"
+map <leader>htx <Action>()
+let g:WhichKeyDesc_help_nt4 = "<leader>htX Recursively close all children of the current node"
+map <leader>htX <Action>()
+let g:WhichKeyDesc_help_nt5 = "<leader>hts Open selected file in a new v-split"
+map <leader>hts <Action>()
+let g:WhichKeyDesc_help_nt6 = "<leader>htP Jump to the root node"
+map <leader>htP <Action>()
+let g:WhichKeyDesc_help_nt7 = "<leader>htp Jump to current nodes parent"
+map <leader>htp <Action>()
+let g:WhichKeyDesc_help_nt8 = "<leader>htK Jump up inside directories at the current tree depth"
+map <leader>htK <Action>()
+let g:WhichKeyDesc_help_nt9 = "<leader>htJ Jump down inside directories at the current tree depth"
+map <leader>htJ <Action>()
+let g:WhichKeyDesc_help_nt10 = "<leader>ht<C-j> Jump down to next sibling of the current directory"
+map <leader>ht<C-j> <Action>()
+let g:WhichKeyDesc_help_nt11 = "<leader>ht<C-k> Jump up to next sibling of the current directory"
+map <leader>ht<C-k> <Action>()
+let g:WhichKeyDesc_help_nt12 = "<leader>htm Jump up to next sibling of the current directory"
+map <leader>htm <Action>()
+let g:WhichKeyDesc_help_nt13 = "<leader>htq Close the NERDTree window"
+map <leader>htq <Action>()
+
+" Help - Surround
+let g:WhichKeyDesc_help_surround = "<leader>hs Surround - key bindings"
+map <leader>hs <Action>()
+let g:WhichKeyDesc_help_surround1 = "<leader>hs1 cs[motion] Change surroundings"
+map <leader>hs1 <Action>()
+let g:WhichKeyDesc_help_surround2 = "<leader>hs2 cst[motion] Change surroundings tag"
+map <leader>hs2 <Action>()
+let g:WhichKeyDesc_help_surround3 = "<leader>hs3 ds[motion] Delete surroundings"
+map <leader>hs3 <Action>()
+let g:WhichKeyDesc_help_surround4 = "<leader>hs4 dst[motion] Delete surroundings tag"
+map <leader>hs4 <Action>()
+let g:WhichKeyDesc_help_surround5 = "<leader>hs5 ys[motion] Surround text object"
+map <leader>hs5 <Action>()

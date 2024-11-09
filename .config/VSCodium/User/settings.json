@@ -1,0 +1,127 @@
+{
+  "window.titleBarStyle": "custom",
+  "window.commandCenter": true,
+  "workbench.colorTheme": "Aura Soft Dark (Soft Text)",
+  "workbench.iconTheme": "material-icon-theme",
+  "redhat.telemetry.enabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "window.menuBarVisibility": "toggle",
+  "git.autofetch": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "salesforcedx-vscode-apex.java.home": "/usr/lib/jvm/java-17-openjdk/",
+  "vim.camelCaseMotion.enable": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.replaceWithRegister": true,
+  "vim.highlightedyank.enable": true,
+  "vim.showMarksInGutter": true,
+  "vim.smartRelativeLine": true,
+  "vim.sneak": true,
+  "vim.sneakReplacesF": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.targets.enable": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.changeWordIncludesWhitespace": false,
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    },
+    {
+      "before": ["\\"],
+      "after": ["<leader>", "<leader>", "/"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["`"],
+      "commands": ["workbench.action.showCommands"],
+      "silent": true
+    },
+    {
+      "before": ["'"],
+      "commands": [":reg"]
+    },
+    {
+      "before": ["|"],
+      "after": ["<C-w>", "v"]
+    },
+    {
+      "before": ["_"],
+      "after": ["<C-w>", "s"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["p"],
+      "after": ["p", "g", "v", "y"]
+    }
+  ],
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+  "workbench.editor.showTabs": "none",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "gitlens.currentLine.fontFamily": "JetBrainsMono Nerd Font",
+  "gitlens.blame.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.cursorSurroundingLines": 8,
+  "workbench.activityBar.orientation": "vertical",
+  "git.showPushSuccessNotification": true,
+  "salesforcedx-vscode-core.clearOutputTab": true,
+  "salesforcedx-vscode-core.telemetry.enabled": false,
+  "apexPMD.priorityWarnThreshold": 1,
+  "editor.cursorSmoothCaretAnimation": "explicit",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "gitlens.mode.statusBar.alignment": "left",
+  "Lua.codeLens.enable": true,
+  "Lua.diagnostics.globals": ["vim"],
+  "Lua.hint.enable": true,
+  "Lua.workspace.library": [
+    "/usr/share/nvim/runtime"
+  ],
+  "window.customTitleBarVisibility": "auto",
+  "indentRainbow.colorOnWhiteSpaceOnly": true,
+  "indentRainbow.colors": [
+    "rgba(255,255,64,0.03)",
+    "rgba(127,255,127,0.03)",
+    "rgba(255,127,255,0.03)",
+    "rgba(79,236,236,0.03)"
+  ],
+  "codeium.enableConfig": {
+    "*": true,
+    "apex": true,
+    "xml": true
+  }
+}
