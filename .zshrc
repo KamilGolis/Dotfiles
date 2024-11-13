@@ -125,6 +125,7 @@ alias cl="cd $HOME && clear && neofetch"
 alias pr="cd $HOME/Projects/"
 alias code="codium"
 alias config="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias lazyconfig="lazygit -w $HOME -g $HOME/.cfg"
 
 # Dotfiles auto update
 dotfiles_autoupdate() {
