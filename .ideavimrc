@@ -10,6 +10,7 @@ set smartcase
 set incsearch
 set hlsearch
 set visualbell
+set autoindent
 
 " Clipboard Integration
 set clipboard+=unnamed
@@ -55,9 +56,9 @@ let g:argtextobj_pairs="[:],(:),<:>"
 " Which-key settings
 set which-key
 set notimeout
-let g:WhichKey_FontSize = 20
-let g:WhichKey_PrefixColor = "#a403fe"
-let g:WhichKey_CommandColor = "#01ffff"
+let g:WhichKey_FontSize = 16
+let g:WhichKey_PrefixColor = "#0403fe"
+let g:WhichKey_CommandColor = "#aa0a0a"
 let g:WhichKey_PrefixStyle = "bold"
 let g:WhichKey_KeyStyle = "italic"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
@@ -98,6 +99,35 @@ nmap <C-S-m> <Action>(ToolWindowsGroup)
 " Clear Search Highlighitng
 nnoremap <C-[> :noh<return>
 
+" Execute macro from q register
+nnoremap qj @q
+
+" Comment lines
+let g:WhichKeyDesc_comment = "<leader>/ Comment line"
+map <leader>/ <action>(CommentByLineComment)
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+let g:WhichKeyDesc_newline = "z New line"
+let g:WhichKeyDesc_newline_above = "zk New line above cursor"
+let g:WhichKeyDesc_newline_below = "zj New line below cursor"
+
+" Folding
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+let g:WhichKeyDesc_fold_region = "<leader>zm Fold region"
+let g:WhichKeyDesc_unfold_region = "<leader>zl Unfold region"
+let g:WhichKeyDesc_fold_region_sel = "<leader>zM Fold region recursively"
+let g:WhichKeyDesc_unfold_region_sel = "<leader>zL Unfold region recursively"
+
+map <leader>zc <Action>(CollapseAllRegions)
+map <leader>zo <Action>(ExpandAllRegions)
+map <leader>zm <Action>(CollapseRegion)
+map <leader>zl <Action>(ExpandRegion)
+map <leader>zM <Action>(CollapseRegionRecursively)
+map <leader>zL <Action>(ExpandRegionRecursively)
 
 "" ========================================================
 "" Leader Commands
@@ -136,13 +166,17 @@ nmap <leader>wu <action>(Unsplit)
 nmap <leader>wm <action>(MoveEditorToOppositeTabGroup)
 nmap <leader>wb <action>(Back)
 nmap <leader>wf <action>(Forward)
-let g:WhichKeyDesc_window = "<leader>w Window splits"
+nmap <leader>wq <action>(HideAllWindows)
+nmap <leader>ws <action>(HideSideWindows)
+let g:WhichKeyDesc_window = "<leader>w Window and splits"
 let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
 let g:WhichKeyDesc_window_split_back = "<leader>wb Back split"
 let g:WhichKeyDesc_window_split_forward = "<leader>wf Forward split"
+let g:WhichKeyDesc_window_hide_all_windows = "<leader>wq Hide all windows"
+let g:WhichKeyDesc_window_hide_side_windows = "<leader>ws Hide side windows"
 
 
 " Tab Navigation and Management
@@ -267,12 +301,14 @@ let g:WhichKeyDesc_debug_activate_tool_window = "<leader>dt Activate Debug Tool 
 
 " (Code) Language Actions
 nmap <leader>cl <Action>(Refactorings.QuickListPopupAction)
+vmap <leader>cl <Action>(Refactorings.QuickListPopupAction)
 nmap <leader>cr <Action>(RenameElement)
 nmap <leader>cc <Action>(ChangeSignature)
 nmap <leader>cv <Action>(IntroduceVariable)
 nmap <leader>ci <Action>(Inline)
 nmap <leader>cf <Action>(IntroduceField)
 nmap <leader>cm <Action>(ExtractMethod)
+vmap <leader>cm <Action>(ExtractMethod)
 nmap <leader>cC <Action>(IntroduceConstant)
 nmap <leader>cp <Action>(IntroduceParameter)
 nmap <leader>co <Action>(IntroduceParameterObject)
@@ -281,12 +317,13 @@ nmap <leader>ca <Action>(ShowIntentionActions)
 nmap <leader>cR <Action>(ReformatCode)
 nmap <leader>cI <Action>(InspectCode)
 nmap <leader>cG <Action>(Generate)
-let g:WhichKeyDesc_language = "<leader>c Language"
+let g:WhichKeyDesc_language = "<leader>c Code / Refactoring"
 let g:WhichKeyDesc_language_menu = "<leader>cl Quick List"
 let g:WhichKeyDesc_language_rename = "<leader>cr Rename"
 let g:WhichKeyDesc_language_change_signature = "<leader>cc Change Signature"
 let g:WhichKeyDesc_language_inline_variable = "<leader>ci Inline"
 let g:WhichKeyDesc_language_introduce_field = "<leader>cf Introduce Field"
+let g:WhichKeyDesc_language_introduce_variable = "<leader>cv Introduce Variable"
 let g:WhichKeyDesc_language_extract_method = "<leader>cm Extract Method"
 let g:WhichKeyDesc_language_introduce_constant = "<leader>cC Introduce Constant"
 let g:WhichKeyDesc_language_introduce_parameter = "<leader>cp Introduce Parameter"
@@ -443,18 +480,21 @@ map <leader>lS <Action>(IlluminatedCloud.ForceSave)
 map <leader>lz <Action>(IlluminatedCloud.ShowAgentforceToolWindow)
 
 " Visual
-vmap ]] <Action>(EditorSelectWord)
-vmap [[ <Action>(EditorUnSelectWord)
+vmap ] <Action>(EditorSelectWord)
+vmap [ <Action>(EditorUnSelectWord)
 
 " Other
 let g:WhichKeyDesc_recent_files = "<leader>, Recently changed files"
 let g:WhichKeyDesc_tools = "<leader>T Tools"
-let g:WhichKeyDesc_tools_actions_list = "<leader>Ta Actions List"
+let g:WhichKeyDesc_tools_actions_list = "<leader>Tl Actions List"
 let g:WhichKeyDesc_tools_registers = "<leader>Tr Registers"
-map <leader>, <Action>(RecentFiles)
-map ` <Action>(GotoAction)
-map <leader>Ta :actionlist<CR>
-map <leader>Tr :reg<CR>
+let g:WhichKeyDesc_tools_select_all = "<leader>Ta Select All text"
+nmap <leader>, <Action>(RecentFiles)
+nmap ` <Action>(GotoAction)
+nmap <leader>Tl :actionlist<CR>
+nmap <leader>Tr :reg<CR>
+vmap <leader>Ta <Esc>ggvG$<CR>
+nmap <leader>Ta <Esc>ggvG$<CR>
 
 " Help
 let g:WhichKeyDesc_help_window = "<leader>h Help"
@@ -502,3 +542,13 @@ let g:WhichKeyDesc_help_surround4 = "<leader>hs4 dst[motion] Delete surroundings
 map <leader>hs4 <Action>()
 let g:WhichKeyDesc_help_surround5 = "<leader>hs5 ys[motion] Surround text object"
 map <leader>hs5 <Action>()
+
+" Handlers
+" Ctrl-C use Copy from IDE in Normal and Visual and Select mode, in Insert mode use Vim
+sethandler <C-C> n-v:ide i:vim
+" Ctrl-X use Cut from IDE in Normal and Visual and Select mode, in Insert mode use Vim
+sethandler <C-X> n-v:ide i:vim
+" Ctrl-A use Select All from IDE in Normal mode, in Insert and Visual use Vim
+sethandler <C-A> n:vim i-x:ide
+" Ctrl-D use Copy Line Below from IDE for Insert and Visual and Select mode, in Normal mode use Vim
+sethandler <C-D> n:vim i-x:ide
